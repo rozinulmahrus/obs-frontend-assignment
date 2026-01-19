@@ -32,7 +32,6 @@ export const addUserApi = async (user: Partial<User>): Promise<User> => {
       snackbarMessage: "User added successfully",
     };
   } catch (error: unknown) {
-    console.log("Add User Error:", (error as AxiosError).response);
     throw error;
   }
 };
@@ -59,8 +58,7 @@ export const updateUserApi = async (user: User): Promise<User> => {
 export const deleteUserApi = async (id: number): Promise<void> => {
   try {
     const res = await axios.delete(`${BASE_URL}/${id}`);
-    console.log("Delete successful", res.data);
   } catch (error: unknown) {
-    console.log("Delete failed", (error as AxiosError).response);
+    throw error;
   }
 };

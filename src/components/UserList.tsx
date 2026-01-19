@@ -1,100 +1,3 @@
-// import { useEffect, useState } from "react";
-// import {
-//   Grid,
-//   Card,
-//   CardContent,
-//   Avatar,
-//   Typography,
-//   CircularProgress,
-//   IconButton,
-//   Button,
-// } from "@mui/material";
-// import EditIcon from "@mui/icons-material/Edit";
-// import DeleteIcon from "@mui/icons-material/Delete";
-// import { useUserStore } from "../store/useUserStore";
-// import UserModal from "./UserModal";
-// import ConfirmDialog from "./ConfirmDialog";
-// import { User } from "../models/User";
-
-// export default function UserList() {
-//   const { users, loading, fetchUsers, deleteUser } = useUserStore();
-//   const [modalOpen, setModalOpen] = useState(false);
-//   const [selectedUser, setSelectedUser] = useState<User | undefined>();
-//   const [confirmOpen, setConfirmOpen] = useState(false);
-//   // console.log(selectedUser);
-
-//   useEffect(() => {
-//     fetchUsers();
-//   }, [fetchUsers]);
-
-//   if (loading) return <CircularProgress />;
-
-//   return (
-//     <>
-//       <Button
-//         variant="contained"
-//         onClick={() => {
-//           setSelectedUser(undefined);
-//           setModalOpen(true);
-//         }}
-//         sx={{ mb: 2 }}
-//       >
-//         Add User
-//       </Button>
-
-//       <Grid container spacing={2}>
-//         {users.map((user) => (
-//           <Grid item xs={12} sm={6} md={4} key={user.id}>
-//             <Card>
-//               <CardContent>
-//                 <Avatar src={user.avatar} />
-//                 <Typography variant="h6">{user.name}</Typography>
-//                 <Typography>{user.email}</Typography>
-
-//                 <IconButton
-//                   onClick={() => {
-//                     // console.log(user);
-//                     setSelectedUser(user);
-//                     setModalOpen(true);
-//                   }}
-//                 >
-//                   <EditIcon />
-//                 </IconButton>
-
-//                 <IconButton
-//                   onClick={() => {
-//                     setSelectedUser(user);
-//                     setConfirmOpen(true);
-//                   }}
-//                 >
-//                   <DeleteIcon />
-//                 </IconButton>
-//               </CardContent>
-//             </Card>
-//           </Grid>
-//         ))}
-//       </Grid>
-
-//       <UserModal
-//         open={modalOpen}
-//         user={selectedUser}
-//         onClose={() => setModalOpen(false)}
-//       />
-
-//       <ConfirmDialog
-//         open={confirmOpen}
-//         title="Delete User"
-//         description="Are you sure you want to delete this user?"
-//         onCancel={() => setConfirmOpen(false)}
-//         onConfirm={() => {
-//           if (selectedUser) deleteUser(selectedUser.id as number);
-//           setConfirmOpen(false);
-//         }}
-//       />
-//     </>
-//   );
-// }
-
 import {
   Avatar,
   Box,
@@ -150,11 +53,10 @@ export default function UserList() {
       />
     );
 
-  // console.log("Users:", users);
   const filtered = users.filter(
     (u) =>
       u.name.toLowerCase().includes(search.toLowerCase()) ||
-      u.email.toLowerCase().includes(search.toLowerCase())
+      u.email.toLowerCase().includes(search.toLowerCase()),
   );
 
   const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);

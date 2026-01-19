@@ -1,88 +1,3 @@
-// import {
-//   Dialog,
-//   DialogTitle,
-//   DialogContent,
-//   TextField,
-//   Button,
-//   Stack,
-// } from "@mui/material";
-// import { useState, useEffect } from "react";
-// import { User } from "../models/User";
-// import { useUserStore } from "../store/useUserStore";
-
-// interface Props {
-//   open: boolean;
-//   user?: User;
-//   onClose: () => void;
-// }
-
-// export default function UserModal({ open, user, onClose }: Props) {
-//   const isEdit = Boolean(user);
-//   const id = `${Math.random()}`;
-//   const { addUser, updateUser } = useUserStore();
-//   console.log(user?.id);
-//   const initialValues = {
-//     id: user?.id || id,
-//     name: user?.name || "",
-//     username: user?.username || "",
-//     email: user?.email || "",
-//     phone: user?.phone || "",
-//     website: user?.website || "",
-//     avatar: user?.avatar || `https://picsum.photos/seed/${Date.now()}/200`,
-//   };
-
-//   const [form, setForm] = useState<User>(initialValues);
-
-//   console.log("ini Form: ", form);
-
-//   useEffect(() => {
-//     setForm(initialValues);
-//   }, [user]);
-
-//   const handleSubmit = () => {
-//     isEdit ? updateUser(form) : addUser(form);
-//     onClose();
-//   };
-
-//   return (
-//     <Dialog open={open} onClose={onClose} fullWidth>
-//       <DialogTitle>{isEdit ? "Edit User" : "Add User"}</DialogTitle>
-//       <DialogContent>
-//         <Stack spacing={2} mt={1}>
-//           <TextField
-//             label="Name"
-//             value={form.name}
-//             onChange={(e) => setForm({ ...form, name: e.target.value })}
-//           />
-//           <TextField
-//             label="Username"
-//             value={form.username}
-//             onChange={(e) => setForm({ ...form, username: e.target.value })}
-//           />
-//           <TextField
-//             label="Email"
-//             value={form.email}
-//             onChange={(e) => setForm({ ...form, email: e.target.value })}
-//           />
-//           <TextField
-//             label="Phone"
-//             value={form.phone}
-//             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-//           />
-//           <TextField
-//             label="Website"
-//             value={form.website}
-//             onChange={(e) => setForm({ ...form, website: e.target.value })}
-//           />
-//           <Button variant="contained" onClick={handleSubmit}>
-//             Save
-//           </Button>
-//         </Stack>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// }
-
 import {
   Dialog,
   DialogTitle,
@@ -115,12 +30,10 @@ export default function UserModal({ open, user, onClose, onSubmit }: Props) {
   };
 
   const [form, setForm] = useState<User>({ ...initialValues });
-  // console.log("ini Form: ", form);
 
   useEffect(() => {
     setForm(initialValues);
     setIdForm(generateRandomId());
-    // console.log("Generated ID:", idForm);
   }, [user]);
 
   const [errors, setErrors] = useState({
@@ -204,8 +117,10 @@ export default function UserModal({ open, user, onClose, onSubmit }: Props) {
           margin="normal"
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+      <DialogActions sx={{ padding: "24px" }}>
+        <Button variant="outlined" onClick={onClose}>
+          Cancel
+        </Button>
         <Button variant="contained" onClick={() => handleSubmit()}>
           Save
         </Button>
