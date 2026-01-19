@@ -12,7 +12,7 @@
 
 - **Frontend**: React.js (TypeScript)
 - **Build Tool**: Vite
-- **Dummy API**: [dummyjson](https://dummyjson.com/users)
+- **Dummy API**: [dummyjson](https://dummyjson.com)
 - **UI Framework**: Material UI (MUI)
 - **State Management**: Zustand
 - **Icons**: MUI Icons
